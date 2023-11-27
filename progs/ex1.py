@@ -21,4 +21,5 @@ if __name__ == "__main__":
     school.pop("8г")
 
     # общее количество учащихся в школе
+    print(school)
     print(sum(school.values()))
