@@ -41,10 +41,41 @@ if __name__ == "__main__":
                 if not found:
                     print("Человка с такой фамилий нет в списке.")
 
+            case "list":
+                line = '+-{}-+-{}-+-{}-+-{}-+-{}-+'.format(
+                '-' * 4,
+                '-' * 30,
+                '-' * 30,
+                '-' * 20,
+                '-' * 20
+            )
+                print(line)
+                print(
+                    '| {:^4} | {:^30} | {:^30} | {:^20} | {:^20} |'.format(
+                        "№",
+                        "Фамилия",
+                        "Имя",
+                        "Знак зодиака",
+                        "Дата рождения")
+                )
+                print(line)
+                for idx, person in enumerate(people, 1):
+                    print(
+                        '| {:>4} | {:<30} | {:<30} | {:<20} | {:>20} |'.format(
+                            idx,
+                            person.get('surname', ''),
+                            person.get('name', ''),
+                            person.get('zodiac', ''),
+                            ".".join(person.get('birthday', ''))
+                        )
+                    )
+                print(line)
+
             case "help":
                 print("add - добавление нового человека")
                 print("info - данные о человеке по его фамилии")
                 print("exti - завершение программы")
+                print("list - вывод информации о всех людях")
 
             case _:
                 print(f"Неизвестная команда {command}", file=sys.stderr)
