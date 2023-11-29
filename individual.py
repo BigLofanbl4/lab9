@@ -14,6 +14,7 @@ if __name__ == "__main__":
         match command:
             case "exit":
                 break
+            
             case "add":
                 person = {}
                 person["surname"] = input("Введите фамилию: ")
@@ -26,6 +27,7 @@ if __name__ == "__main__":
                 people.sort(
                     key=lambda x: datetime.strptime(".".join(x["birthday"]), "%d.%m.%Y")
                 )
+
             case "info":
                 last_name = input("Введите фамилию: ")
                 line = '+-{}-+-{}-+-{}-+-{}-+-{}-+'.format(
