@@ -9,7 +9,7 @@ if __name__ == "__main__":
     people = []
 
     while True:
-        command = input("Введите команду (add, info, exit): ").strip().lower()
+        command = input("Введите команду (add, info, list, exit, help): ").strip().lower()
 
         match command:
             case "exit":
@@ -30,6 +30,7 @@ if __name__ == "__main__":
 
             case "info":
                 last_name = input("Введите фамилию: ")
+                count = 0
                 line = '+-{}-+-{}-+-{}-+-{}-+-{}-+'.format(
                 '-' * 4,
                 '-' * 30,
@@ -39,29 +40,29 @@ if __name__ == "__main__":
                 )
                 print(line)
                 print(
-                    '| {:^30} | {:^30} | {:^20} | {:^20} |'.format(
+                    '| {:^4} | {:^30} | {:^30} | {:^20} | {:^20} |'.format(
+                        "№",
                         "Фамилия",
                         "Имя",
                         "Знак зодиака",
                         "Дата рождения")
                 )
                 print(line)
-                found = False
-                for i in people:
-                    if i["surname"] == last_name:
+                for idx, person in enumerate(people, 1):
+                    if person["surname"] == last_name:
+                        count += 1
                         print(
-                        '| {:<30} | {:<30} | {:<20} | {:>20} |'.format(
+                        '| {:>4} | {:<30} | {:<30} | {:<20} | {:>20} |'.format(
+                            idx,
                             person.get('surname', ''),
                             person.get('name', ''),
                             person.get('zodiac', ''),
                             ".".join(person.get('birthday', ''))
+                            )
                         )
-                    )
-                        found = True
-                        break
                 print(line)
-                if not found:
-                    print("Человка с такой фамилий нет в списке.")
+                if count == 0:
+                    print("Людей с такой фамилий нет в списке.")
 
             case "list":
                 line = '+-{}-+-{}-+-{}-+-{}-+-{}-+'.format(
